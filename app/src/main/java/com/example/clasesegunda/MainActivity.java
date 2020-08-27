@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,26 +42,35 @@ public class MainActivity extends AppCompatActivity {
             operacion.setText(""+preguntas.get(i).getPregu());
         }
 
+
         responder.setOnClickListener(
                 (view) -> {
-                   //accion
+                    //accion
 
-                    String answer = respuesta.getText().toString();
+
+                    preguntas.add(new Pregunta());
 
                     for(int i = 0; i < preguntas.size(); i ++){
-                    if(preguntas.get(i).getRespu().equals(answer)){
-                        preguntas.get(i).operar();
-                        operacion.setText(""+preguntas.get(i).getPregu());
-                        respuesta.setText("");
+
+                        String answer = respuesta.getText().toString();
+                        if(Objects.equals(preguntas.get(i).getRespu(), answer)){
+                            preguntas.get(i).operar();
+                            operacion.setText(""+preguntas.get(i).getPregu());
+
+                            respuesta.setText("");
 
                         }else{
+                            Log.d("pruebaaaaaaaaaaaaaaaa", "MALOOOOOOOOO");
 
                         }
+
+                        Log.d("pruebaaaaaaaaaaaaaaaa", ""+ preguntas.get(i).getRespu());
                     }
                 }
+
         );
 
-        Log.d("pruebaaaaaaaaaaaaaaaa", "preg"+preguntas);
+
 
 
 
