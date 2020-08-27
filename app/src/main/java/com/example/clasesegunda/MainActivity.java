@@ -17,10 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView operacion;
     private TextView numPuntaje;
+    private TextView counter;
     private Button responder;
     private Button intentar;
     private EditText respuesta;
     private int puntos;
+    private int contador = 30;
 
     private ArrayList <Pregunta> preguntas;
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         responder = findViewById(R.id.responder);
         respuesta = findViewById(R.id.respuesta);
         intentar = findViewById(R.id.intentar);
+        counter = findViewById(R.id.counter);
         puntos = 0;
 
 
@@ -46,6 +49,34 @@ public class MainActivity extends AppCompatActivity {
             operacion.setText(""+preguntas.get(i).getPregu());
 
         }
+
+        //contador
+        new Thread(
+                ()->{
+                    while(contador > 0){
+                        contador --;
+
+                        runOnUiThread( ()-> {
+                            counter.setText(""+contador);
+                            if (contador > 0 ){
+                                intentar.setVisibility(View.GONE);
+                            }else{
+                                intentar.setVisibility(View.VISIBLE);
+                            }
+                            Log.d(">>>>>>>>>>>>>>>>>>", "CONTADOR"+contador);
+                        });
+
+                        try {
+                            Thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+        ).start();
+
+
 
 
         responder.setOnClickListener(
