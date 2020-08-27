@@ -48,15 +48,13 @@ public class MainActivity extends AppCompatActivity {
                     //accion
 
 
-                    preguntas.add(new Pregunta());
+
 
                     for(int i = 0; i < preguntas.size(); i ++){
-
                         String answer = respuesta.getText().toString();
-                        if(Objects.equals(preguntas.get(i).getRespu(), answer)){
+                        if(preguntas.get(i).getRespu().contentEquals(answer)){
                             preguntas.get(i).operar();
                             operacion.setText(""+preguntas.get(i).getPregu());
-
                             respuesta.setText("");
 
                         }else{
