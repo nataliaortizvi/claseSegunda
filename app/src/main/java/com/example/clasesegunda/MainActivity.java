@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private Button intentar;
     private EditText respuesta;
     private int puntos;
-    private int contador = 30;
+    private int contador;
+    private boolean reiniciar;
 
     private ArrayList <Pregunta> preguntas;
 
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         respuesta = findViewById(R.id.respuesta);
         intentar = findViewById(R.id.intentar);
         counter = findViewById(R.id.counter);
+        contador = 30;
+        reiniciar = false;
         puntos = 0;
 
 
@@ -62,12 +65,13 @@ public class MainActivity extends AppCompatActivity {
                                 intentar.setVisibility(View.GONE);
                             }else{
                                 intentar.setVisibility(View.VISIBLE);
+
                             }
                             Log.d(">>>>>>>>>>>>>>>>>>", "CONTADOR"+contador);
                         });
 
                         try {
-                            Thread.sleep(300);
+                            Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -101,8 +105,55 @@ public class MainActivity extends AppCompatActivity {
                         }else{
                             Log.d(">>>>>>>>>>>>>>>>>>", "MAAAAAALLLLL");
                             Log.d("PREGUNTAAAAAA", ""+preguntas.get(i).getPregu()+ "RESPUESTAAAAA"+preguntas.get(i).getRespu());
+                            Toast.makeText(this, "Respuesta incorrecta", Toast.LENGTH_LONG).show();
                         }
                     }
+                }
+        );
+
+        intentar.setOnClickListener(
+                (view) -> {
+                    //accion
+                    reiniciar = true;
+                    contador = 30;
+                    puntos = 0;
+
+                    //contador
+                    new Thread(
+                            ()->{
+                                while(contador > 0){
+                                    contador --;
+
+                                    runOnUiThread( ()-> {
+                                        counter.setText(""+contador);
+                                        if (contador > 0 ){
+                                            intentar.setVisibility(View.GONE);
+                                        }else{
+                                            intentar.setVisibility(View.VISIBLE);
+
+                                        }
+                                        Log.d(">>>>>>>>>>>>>>>>>>", "CONTADOR"+contador);
+                                    });
+
+                                    try {
+                                        Thread.sleep(1000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            }
+                    ).start();
+
+                    Log.d(">>>>>>>>>>>>>>>>>>", "CONTADOR" + contador);
+
+                        for (int i = 0; i < preguntas.size(); i++) {
+
+                            //sale otra pregunta
+                                preguntas.get(i).operar();
+                                operacion.setText("" + preguntas.get(i).getPregu());
+                                respuesta.setText("");
+                            }
                 }
         );
 
