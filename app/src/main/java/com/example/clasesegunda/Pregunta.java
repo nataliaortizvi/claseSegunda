@@ -31,7 +31,7 @@ public class Pregunta {
                 break;
             case 3:
                 pregu = "30/6";
-                respu = "30";
+                respu = "5";
                 break;
             case 4:
                 pregu = "7x10";
@@ -42,12 +42,12 @@ public class Pregunta {
                 respu = "21";
                 break;
             case 6:
-                pregu = "24+14";
-                respu = "38";
+                pregu = "24+2";
+                respu = "26";
                 break;
             case 7:
-                pregu = "45-21";
-                respu = "24";
+                pregu = "45-5";
+                respu = "40";
                 break;
             case 8:
                 pregu = "33-10";
@@ -75,27 +75,27 @@ public class Pregunta {
                 break;
             case 14:
                 pregu = "22x2";
-                respu = "4";
+                respu = "44";
                 break;
             case 15:
-                pregu = "15+11";
-                respu = "26";
+                pregu = "15+3";
+                respu = "18";
                 break;
             case 16:
                 pregu = "33/3";
                 respu = "11";
                 break;
             case 17:
-                pregu = "26-22";
-                respu = "4";
+                pregu = "26-7";
+                respu = "19";
                 break;
             case 18:
                 pregu = "19x4";
                 respu = "76";
                 break;
             case 19:
-                pregu = "10+34";
-                respu = "44";
+                pregu = "10+8";
+                respu = "18";
                 break;
 
 
