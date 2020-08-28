@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 (view) -> {
                     //accion
 
+                    if(contador > 0){
                     for(int i = 0; i < preguntas.size(); i ++){
                         String answer = respuesta.getText().toString();
 
@@ -106,9 +107,16 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(">>>>>>>>>>>>>>>>>>", "MAAAAAALLLLL");
                             Log.d("PREGUNTAAAAAA", ""+preguntas.get(i).getPregu()+ "RESPUESTAAAAA"+preguntas.get(i).getRespu());
                             Toast.makeText(this, "Respuesta incorrecta", Toast.LENGTH_LONG).show();
+
+                            if(puntos > 0){
+                                puntos -= 5;
+                                numPuntaje.setText(""+puntos);
+                            }
+
                         }
                     }
                 }
+            }
         );
 
         intentar.setOnClickListener(
@@ -117,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     reiniciar = true;
                     contador = 30;
                     puntos = 0;
+                    numPuntaje.setText(""+puntos);
 
                     //contador
                     new Thread(
